@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { requestAuthentication } from '../../store/actions/auth';
 
 const Home = ({
+    loading,
+    error,
     onRequestAuthentication,
 }) => {
     const onSubmit = ({ email, password }) => {
@@ -15,19 +17,24 @@ const Home = ({
         <Container>
             <Grid style={{ marginTop: 'auto' }}>
                 <Row center="xs">
-                <Col>
-                    <Logo src="/assets/logo.png" />
-                </Col>
+                    <Col>
+                        <Logo src="/assets/logo.png" />
+                    </Col>
                 </Row>
-                <Forms.Login onSubmit={onSubmit} />
+                <Forms.Login loading={loading} error={error} onSubmit={onSubmit} />
             </Grid>
             <Footer />
         </Container>
     );
 };
 
+const mapStateToProps = ({ auth: { loading, error, } }) => ({
+    loading,
+    error,
+});
+
 const mapDispatchToProps = {
     onRequestAuthentication: requestAuthentication,
 };
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

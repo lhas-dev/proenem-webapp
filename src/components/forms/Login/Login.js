@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Col, Row } from 'react-styled-flexboxgrid';
-import TextField from '@material-ui/core/TextField';
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress, TextField } from '@material-ui/core';
 import validate from 'validate.js';
 
 const constraints = {
@@ -17,7 +17,21 @@ const constraints = {
     },
 };
 
+const ButtonWrapper = styled.div`
+    position: relative;
+`;
+
+const CircularProgressWrapper = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    marginTop: -12px;
+    marginLeft: -12px;
+`;
+
 const Login = ({
+    loading,
+    error,
     onSubmit,
 }) => {
     const [isTouched, setIsTouched] = useState({});
@@ -70,7 +84,12 @@ const Login = ({
             </Row>
             <Row center="xs">
                 <Col xs={12} md={6}>
-                    <Button type="submit" disabled={!canSubmit} fullWidth variant="contained" color="secondary" style={{ marginTop: 15 }}>Entrar</Button>
+                    <ButtonWrapper>
+                        <Button type="submit" disabled={!canSubmit || loading} fullWidth variant="contained" color="secondary" style={{ marginTop: 15 }}>
+                            Entrar
+                        </Button>
+                        {loading && <CircularProgressWrapper><CircularProgress size={24} /></CircularProgressWrapper>}
+                    </ButtonWrapper>
                 </Col>
             </Row>
         </form>
