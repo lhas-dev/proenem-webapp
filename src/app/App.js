@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { theme } from '../config';
 import { Home } from '../screens';
+import store from '../store';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -19,11 +21,13 @@ class App extends Component {
       <>
       <GlobalStyle />
       <MuiThemeProvider theme={theme}>
-        <Router>
-          <div>
-            <Route path="/" exact component={Home} />
-          </div>
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <div>
+              <Route path="/" exact component={Home} />
+            </div>
+          </Router>
+        </Provider>
       </MuiThemeProvider>
       </>
     );
