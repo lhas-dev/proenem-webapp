@@ -1,7 +1,10 @@
 import { AUTHENTICATION_SUCCESS } from '../actions/auth';
 
 const initialState = {
+    id: '',
     email: '',
+    imageProfile: '',
+    name: '',
     token: '',
 };
 
