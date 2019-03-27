@@ -21,7 +21,7 @@ const Home = ({
                         <Logo src="/assets/logo.png" />
                     </Col>
                 </Row>
-                <Forms.Login loading={loading} error={error} onSubmit={onSubmit} />
+                <Forms.Login loading={loading} onSubmit={onSubmit} />
             </Grid>
             <Footer />
         </Container>

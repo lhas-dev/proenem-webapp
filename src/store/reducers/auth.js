@@ -10,19 +10,19 @@ const initialState = {
     loading: false,
 };
 
-const auth = (state = initialState, action) => {
-    switch (action.type) {
+const auth = (state = initialState, { type, payload }) => {
+    switch (type) {
         case AUTHENTICATION_REQUEST:
             return {
                 ...state,
-                ...action.payload,
+                ...payload,
                 error: false,
                 loading: true,
             };
         case AUTHENTICATION_SUCCESS:
             return {
                 ...state,
-                ...action.payload,
+                ...payload,
                 error: false,
                 loading: false,
             };

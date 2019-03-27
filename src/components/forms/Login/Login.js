@@ -25,13 +25,12 @@ const CircularProgressWrapper = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    marginTop: -12px;
-    marginLeft: -12px;
+    margin-top: -4px;
+    margin-left: -4px;
 `;
 
 const Login = ({
     loading,
-    error,
     onSubmit,
 }) => {
     const [isTouched, setIsTouched] = useState({});

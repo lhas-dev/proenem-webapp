@@ -1,4 +1,5 @@
 import { ProdigioEducacao } from '../../services';
+import { showSnackbar } from './snackbar';
 export const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
 export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE';
@@ -10,6 +11,7 @@ export const requestAuthentication = ({ email, password }) => async dispatch => 
     try {
         const { data } = await ProdigioEducacao.authentication({ email, password});
 
+        dispatch(showSnackbar({ message: 'Seja bem-vindo(a) ao Pro Enem!'}));
         dispatch({
             type: AUTHENTICATION_SUCCESS,
             payload: {
@@ -21,6 +23,7 @@ export const requestAuthentication = ({ email, password }) => async dispatch => 
             }
         });
     } catch (e) {
+        dispatch(showSnackbar({ message: 'Confira se os dados estão corretos e tente novamente.'}));
         dispatch({
             type: AUTHENTICATION_FAILURE,
         });

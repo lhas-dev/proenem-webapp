@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
@@ -6,6 +8,7 @@ import { Provider } from 'react-redux';
 import { theme } from '../config';
 import { Home } from '../screens';
 import store from '../store';
+import { hideSnackbar } from '../store/actions/snackbar';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -15,23 +18,34 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-class App extends Component {
-  render() {
-    return (
-      <>
-      <GlobalStyle />
-      <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Router>
-            <div>
-              <Route path="/" exact component={Home} />
-            </div>
-          </Router>
-        </Provider>
-      </MuiThemeProvider>
-      </>
-    );
-  }
-}
+const App = ({ snackbar, onHideSnackbar, }) => (
+  <>
+    <GlobalStyle />
+    <MuiThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Router>
+          <div>
+            <Snackbar open={snackbar.visible} message={snackbar.message} autoHideDuration={6000} onClose={onHideSnackbar} />
+            <Route path="/" exact component={Home} />
+          </div>
+        </Router>
+      </Provider>
+    </MuiThemeProvider>
+  </>
+);
 
-export default App;
+const mapStateToProps = ({ snackbar }) => ({
+  snackbar,
+});
+
+const mapDispatchToProps = {
+  onHideSnackbar: hideSnackbar,
+};
+
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default () => (
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
+);
