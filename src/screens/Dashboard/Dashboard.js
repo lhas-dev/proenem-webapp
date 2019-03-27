@@ -1,15 +1,11 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import { Container, } from '../../components';
 import { connect } from 'react-redux';
-import { Typography, Icon, Paper } from '@material-ui/core';
-import { logout } from '../../store/actions/auth';
 import { Grid, Row, Col, } from 'react-styled-flexboxgrid';
-import Avatar from '@material-ui/core/Avatar';
+import { AppBar, Toolbar, IconButton, Avatar, Typography, Icon, Paper, List, ListItem, ListItemText, ListItemAvatar, } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { logout } from '../../store/actions/auth';
+import { Container, } from '../../components';
 
 const styles = {
     grow: {
@@ -44,7 +40,7 @@ const Dashboard = ({
                 <Grid>
                     <Row center="xs">
                         <Col xs={12} md={6}>
-                            <Paper style={{ padding: 20, marginTop: 20 }}>
+                            <Paper elevation={1} style={{ padding: 20, marginTop: 20 }}>
                                 <Row middle="xs">
                                     <Col>
                                         <Avatar src={auth.imageProfile} />
@@ -58,6 +54,27 @@ const Dashboard = ({
                                         </Typography>
                                     </Col>
                                 </Row>
+                            </Paper>
+                        </Col>
+                    </Row>
+                    <Row center="xs">
+                        <Col xs={12} md={6}>
+                            <Paper elevation={2} style={{ padding: 20, marginTop: 20 }}>
+                                <Typography className={classes.grow} variant="h6">
+                                    Cursos disponíveis
+                                </Typography>
+                                <List>
+                                    {auth.lessonPlans.map(lessonPlan => (
+                                        <ListItem key={lessonPlan.id}>
+                                            <ListItemAvatar>
+                                                <Avatar>
+                                                    <Icon>folder</Icon>
+                                                </Avatar>
+                                            </ListItemAvatar>
+                                            <ListItemText primary={lessonPlan.value} />
+                                        </ListItem>
+                                    ))}
+                                </List>
                             </Paper>
                         </Col>
                     </Row>
