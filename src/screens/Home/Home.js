@@ -17,7 +17,7 @@ const Home = ({
     if (token !== '') return (<Redirect to="/dashboard" />);
 
     return (
-        <Container>
+        <Container vertical>
             <Grid style={{ marginTop: 'auto' }}>
                 <Row center="xs">
                     <Col>

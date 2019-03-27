@@ -4,9 +4,13 @@ const Container = styled.div`
 background: linear-gradient(#DD2C54, #7B286B);
 width: 100%;
 min-height: 100vh;
-display: flex;
-justify-content: center;
-flex-direction: column;
+${({ vertical }) => `
+    ${vertical ? `
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    ` : ''}
+`}
 `;
 
 export default Container;
