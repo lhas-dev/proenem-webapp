@@ -6,7 +6,7 @@ import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { theme } from '../config';
-import { Home } from '../screens';
+import { Home, Dashboard } from '../screens';
 import store from '../store';
 import { hideSnackbar } from '../store/actions/snackbar';
 
@@ -27,6 +27,7 @@ const App = ({ snackbar, onHideSnackbar, }) => (
           <div>
             <Snackbar open={snackbar.visible} message={snackbar.message} autoHideDuration={6000} onClose={onHideSnackbar} />
             <Route path="/" exact component={Home} />
+            <Route path="/dashboard" component={Dashboard} />
           </div>
         </Router>
       </Provider>

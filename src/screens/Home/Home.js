@@ -1,17 +1,20 @@
 import React from 'react';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
+import { Redirect } from 'react-router-dom';
 import { Container, Footer, Logo, Forms, } from '../../components';
 import { connect } from 'react-redux';
 import { requestAuthentication } from '../../store/actions/auth';
 
 const Home = ({
     loading,
-    error,
+    token,
     onRequestAuthentication,
 }) => {
     const onSubmit = ({ email, password }) => {
         onRequestAuthentication({ email, password });
     };
+
+    if (token !== '') return (<Redirect to="/dashboard" />);
 
     return (
         <Container>
@@ -28,9 +31,10 @@ const Home = ({
     );
 };
 
-const mapStateToProps = ({ auth: { loading, error, } }) => ({
+const mapStateToProps = ({ auth: { loading, error, token, } }) => ({
     loading,
     error,
+    token,
 });
 
 const mapDispatchToProps = {

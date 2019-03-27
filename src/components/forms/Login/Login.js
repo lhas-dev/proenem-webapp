@@ -26,7 +26,7 @@ const CircularProgressWrapper = styled.div`
     top: 50%;
     left: 50%;
     margin-top: -4px;
-    margin-left: -4px;
+    margin-left: -12px;
 `;
 
 const Login = ({
