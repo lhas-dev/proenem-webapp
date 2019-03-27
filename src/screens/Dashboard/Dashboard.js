@@ -6,8 +6,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import { Container, } from '../../components';
 import { connect } from 'react-redux';
-import { Typography, Icon } from '@material-ui/core';
+import { Typography, Icon, Paper } from '@material-ui/core';
 import { logout } from '../../store/actions/auth';
+import { Grid, Row, Col, } from 'react-styled-flexboxgrid';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = {
     grow: {
@@ -31,17 +33,35 @@ const Dashboard = ({
             <Container>
                 <AppBar color="secondary" position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <Icon>menu</Icon>
-                        </IconButton>
                         <Typography className={classes.grow} variant="h6" color="inherit">
-                            {auth.email}
+                            Dashboard
                         </Typography>
                         <IconButton onClick={onLogout} className={classes.menuButton} color="inherit" aria-label="Menu">
                             <Icon>logout</Icon>
                         </IconButton>
                     </Toolbar>
                 </AppBar>
+                <Grid>
+                    <Row center="xs">
+                        <Col xs={12} md={6}>
+                            <Paper style={{ padding: 20, marginTop: 20 }}>
+                                <Row middle="xs">
+                                    <Col>
+                                        <Avatar src={auth.imageProfile} />
+                                    </Col>
+                                    <Col>
+                                        <Typography className={classes.grow} variant="h6">
+                                            Olá, {auth.name}!
+                                        </Typography>
+                                        <Typography className={classes.grow} variant="body1">
+                                            Seu e-mail é: {auth.email}
+                                        </Typography>
+                                    </Col>
+                                </Row>
+                            </Paper>
+                        </Col>
+                    </Row>
+                </Grid>
             </Container>
         </>
     );
