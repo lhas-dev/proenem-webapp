@@ -3,6 +3,7 @@ import { showSnackbar } from './snackbar';
 export const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
 export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE';
+export const FETCH_PERSON = 'FETCH_PERSON';
 
 export const requestAuthentication = ({ email, password }) => async dispatch => {
     dispatch({
@@ -21,6 +22,11 @@ export const requestAuthentication = ({ email, password }) => async dispatch => 
                 imageProfile: data.credentials.imageProfile,
                 name: data.credentials.name,
             }
+        });
+        const personResponse = await ProdigioEducacao.fetchPerson({ token: data.token });
+        dispatch({
+            type: FETCH_PERSON,
+            payload: personResponse.data,
         });
     } catch (e) {
         dispatch(showSnackbar({ message: 'Confira se os dados estão corretos e tente novamente.'}));

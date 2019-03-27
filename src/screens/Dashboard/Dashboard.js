@@ -1,10 +1,10 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import { Grid, Col, Row } from 'react-styled-flexboxgrid';
-import { Container, Footer, Logo, Forms, } from '../../components';
+import { Container, } from '../../components';
 import { connect } from 'react-redux';
 import { Typography, Icon } from '@material-ui/core';
 
@@ -22,6 +22,7 @@ const Dashboard = ({
     auth,
     classes,
 }) => {
+    if (auth.token === '') return (<Redirect to="/" />);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { AUTHENTICATION_REQUEST, AUTHENTICATION_SUCCESS, AUTHENTICATION_FAILURE, } from '../actions/auth';
+import { AUTHENTICATION_REQUEST, AUTHENTICATION_SUCCESS, AUTHENTICATION_FAILURE, FETCH_PERSON, } from '../actions/auth';
 
 const initialState = {
     id: '',
@@ -8,6 +8,7 @@ const initialState = {
     token: '',
     error: false,
     loading: false,
+    person: {},
 };
 
 const auth = (state = initialState, { type, payload }) => {
@@ -25,6 +26,11 @@ const auth = (state = initialState, { type, payload }) => {
                 ...payload,
                 error: false,
                 loading: false,
+            };
+        case FETCH_PERSON:
+            return {
+                ...state,
+                person: payload,
             };
         case AUTHENTICATION_FAILURE:
             return {
