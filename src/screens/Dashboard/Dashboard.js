@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, } from 'react-styled-flexboxgrid';
@@ -16,6 +17,15 @@ const styles = {
         marginRight: 20,
     },
 };
+
+const AvatarWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const AvatarEmail = styled.div`
+    
+`;
 
 const Dashboard = ({
     auth,
@@ -40,26 +50,24 @@ const Dashboard = ({
                 <Grid>
                     <Row center="xs">
                         <Col xs={12} md={6}>
-                            <Paper elevation={1} style={{ padding: 20, marginTop: 20 }}>
-                                <Row middle="xs">
-                                    <Col>
-                                        <Avatar src={auth.imageProfile} />
-                                    </Col>
-                                    <Col>
-                                        <Typography className={classes.grow} variant="h6">
-                                            Olá, {auth.name}!
-                                        </Typography>
-                                        <Typography className={classes.grow} variant="body1">
-                                            Seu e-mail é: {auth.email}
-                                        </Typography>
-                                    </Col>
-                                </Row>
+                            <Paper elevation={1} style={{ padding: 10, marginTop: 20 }}>
+                                <AvatarWrapper>
+                                    <Avatar src={auth.imageProfile} style={{ marginRight: 10, }} />
+                                    <Typography className={classes.grow} variant="h6">
+                                        Olá, {auth.name}!
+                                    </Typography>
+                                </AvatarWrapper>
+                                <AvatarEmail>
+                                    <Typography className={classes.grow} variant="body1">
+                                        Seu e-mail é: {auth.email}
+                                    </Typography>
+                                </AvatarEmail>
                             </Paper>
                         </Col>
                     </Row>
                     <Row center="xs">
                         <Col xs={12} md={6}>
-                            <Paper elevation={2} style={{ padding: 20, marginTop: 20 }}>
+                            <Paper elevation={2} style={{ padding: 10, marginTop: 20 }}>
                                 <Typography className={classes.grow} variant="h6">
                                     Cursos disponíveis
                                 </Typography>
