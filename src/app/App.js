@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import Snackbar from '@material-ui/core/Snackbar';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createGlobalStyle } from 'styled-components';
@@ -22,7 +23,6 @@ const App = ({ snackbar, onHideSnackbar, }) => (
   <>
     <GlobalStyle />
     <MuiThemeProvider theme={theme}>
-      <Provider store={store}>
         <Router>
           <div>
             <Snackbar open={snackbar.visible} message={snackbar.message} autoHideDuration={6000} onClose={onHideSnackbar} />
@@ -30,7 +30,6 @@ const App = ({ snackbar, onHideSnackbar, }) => (
             <Route path="/dashboard" component={Dashboard} />
           </div>
         </Router>
-      </Provider>
     </MuiThemeProvider>
   </>
 );
@@ -46,7 +45,9 @@ const mapDispatchToProps = {
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default () => (
-  <Provider store={store}>
-    <AppContainer />
+  <Provider store={store().store}>
+    <PersistGate loading={null} persistor={store().persistor}>
+      <AppContainer />
+    </PersistGate>
   </Provider>
 );
