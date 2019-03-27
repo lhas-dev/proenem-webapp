@@ -4,6 +4,7 @@ export const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST';
 export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS';
 export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE';
 export const FETCH_PERSON = 'FETCH_PERSON';
+export const LOGOUT = 'LOGOUT';
 
 export const requestAuthentication = ({ email, password }) => async dispatch => {
     dispatch({
@@ -21,6 +22,7 @@ export const requestAuthentication = ({ email, password }) => async dispatch => 
                 id: data.credentials.id,
                 imageProfile: data.credentials.imageProfile,
                 name: data.credentials.name,
+                lessonPlans: data.lessonPlans,
             }
         });
         const personResponse = await ProdigioEducacao.fetchPerson({ token: data.token });
@@ -34,4 +36,12 @@ export const requestAuthentication = ({ email, password }) => async dispatch => 
             type: AUTHENTICATION_FAILURE,
         });
     }
+};
+
+
+export const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT,
+    });
+    dispatch(showSnackbar({ message: 'Você foi deslogado(a) com sucesso!'}));
 };

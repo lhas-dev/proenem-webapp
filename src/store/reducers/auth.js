@@ -1,4 +1,4 @@
-import { AUTHENTICATION_REQUEST, AUTHENTICATION_SUCCESS, AUTHENTICATION_FAILURE, FETCH_PERSON, } from '../actions/auth';
+import { AUTHENTICATION_REQUEST, AUTHENTICATION_SUCCESS, AUTHENTICATION_FAILURE, FETCH_PERSON, LOGOUT, } from '../actions/auth';
 
 const initialState = {
     id: '',
@@ -9,10 +9,13 @@ const initialState = {
     error: false,
     loading: false,
     person: {},
+    lessonPlans: [],
 };
 
 const auth = (state = initialState, { type, payload }) => {
     switch (type) {
+        case LOGOUT:
+            return initialState;
         case AUTHENTICATION_REQUEST:
             return {
                 ...state,
