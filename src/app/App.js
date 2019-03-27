@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createGlobalStyle } from 'styled-components';
-import { Grid, Col, Row } from 'react-styled-flexboxgrid';
-import { Container, Footer, Logo, } from '../components';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import { theme } from '../config';
-import { Forms } from '../components';
+import { Home } from '../screens';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -20,17 +19,11 @@ class App extends Component {
       <>
       <GlobalStyle />
       <MuiThemeProvider theme={theme}>
-        <Container>
-          <Grid style={{ marginTop: 'auto' }}>
-              <Row center="xs">
-                <Col>
-                  <Logo src="/assets/logo.png" />
-                </Col>
-              </Row>
-              <Forms.Login />
-          </Grid>
-          <Footer />
-        </Container>
+        <Router>
+          <div>
+            <Route path="/" exact component={Home} />
+          </div>
+        </Router>
       </MuiThemeProvider>
       </>
     );
