@@ -17,20 +17,22 @@ const constraints = {
     },
 };
 
-const Login = () => {
+const Login = ({
+    onSubmit,
+}) => {
     const [isTouched, setIsTouched] = useState({});
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const validation = validate({ email, password }, constraints);
     const canSubmit = !validation;
 
-    const onSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
-        console.log('ae');
+        onSubmit({ email, password });
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
             <Row center="xs">
                 <Col xs={12} md={6}>
                     <TextField
