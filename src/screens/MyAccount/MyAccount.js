@@ -250,9 +250,13 @@ const AccountFormLegendLine = styled.div`
 `;
 
 const TextFieldWrapper = styled.div`
-    width: 95%;
+    width: 100%;
     position: relative;
     margin-bottom: 25px;
+
+    @media only screen and (min-width: 768px) {
+        width: 95%;
+    }
 `;
 
 const TextFieldButton = styled.button`
@@ -296,11 +300,15 @@ const TextField = styled.input`
 `;
 
 const SelectFieldWrapper = styled.div`
-    width: 95%;
+    width: 100%;
     overflow: hidden;
     border-radius: 3px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     position: relative;
+    margin-bottom: 25px;
+    @media only screen and (min-width: 768px) {
+        width: 95%;
+    }
 `;
 
 const SelectField = styled.select`
@@ -562,24 +570,24 @@ const MyAccount = () => (
                                     <AccountFormLegendLine />
                                 </AccountFormLegend>
                                 <Row>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" />
                                         </TextFieldWrapper>
                                     </Col>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" value="Preenchido" />
                                         </TextFieldWrapper>
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" value="Focus" />
                                         </TextFieldWrapper>
                                     </Col>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" value="(27) 981141549" />
                                         </TextFieldWrapper>
@@ -592,13 +600,13 @@ const MyAccount = () => (
                                     <AccountFormLegendLine />
                                 </AccountFormLegend>
                                 <Row>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" value="29456-092" />
                                             <TextFieldButton>Atualizar</TextFieldButton>
                                         </TextFieldWrapper>
                                     </Col>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" value="Av. Paulista" />
                                         </TextFieldWrapper>
@@ -622,7 +630,7 @@ const MyAccount = () => (
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <SelectFieldWrapper>
                                             <SelectField>
                                                 <option value="">São Paulo (SP)</option>
@@ -632,7 +640,7 @@ const MyAccount = () => (
                                             </SelectFieldArrow>
                                         </SelectFieldWrapper>
                                     </Col>
-                                    <Col xs={6}>
+                                    <Col xs={12} md={6}>
                                         <TextFieldWrapper>
                                             <TextField placeholder="Placeholder" value="São Paulo" />
                                         </TextFieldWrapper>
