@@ -26,7 +26,7 @@ const Home = ({
                 </Row>
                 <Forms.Login loading={loading} onSubmit={onSubmit} />
             </Grid>
-            <Footer />
+            <Footer.Default />
         </Container>
     );
 };
